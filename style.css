@@ -1,4 +1,4 @@
-/* Base */
+
 * { box-sizing: border-box; }
 body {
   font-family: 'Segoe UI', Tahoma, sans-serif;
@@ -7,7 +7,7 @@ body {
   color: #fff;
 }
 
-/* Reusable page header used on map and chat pages */
+
 .page-header {
   display: flex;
   align-items: center;
@@ -18,7 +18,7 @@ body {
   position: relative;
 }
 
-/* Logo in header */
+
 .logo {
   height: 56px;
   width: auto;
@@ -26,7 +26,7 @@ body {
   object-fit: contain;
 }
 
-/* header title */
+
 .page-header h1 {
   font-size: 20px;
   font-weight: 700;
@@ -35,7 +35,7 @@ body {
   text-align: left;
 }
 
-/* Back button */
+
 .back-btn {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.15);
@@ -45,7 +45,7 @@ body {
   cursor: pointer;
 }
 
-/* HOME */
+
 .home-container {
   display: flex;
   justify-content: center;
@@ -69,17 +69,17 @@ body {
 }
 #map-btn:hover, #chat-btn:hover { background-color: #e5383b; }
 
-/* MAP PAGE */
+
 .map-container { height: 100vh; display: flex; flex-direction: column; }
 .map-box { flex: 1; }
 
-/* MAIN LAYOUT (chat page) */
+
 .main-container {
   display: flex;
   height: calc(100vh - 72px); /* header height approx */
 }
 
-/* Sidebar */
+
 .sidebar {
   width: 240px;
   background: #9d0208;
@@ -110,7 +110,7 @@ body {
   cursor: pointer;
 }
 
-/* Chat container */
+
 .chat-container {
   flex: 1;
   display: flex;
@@ -120,7 +120,7 @@ body {
   color: #222;
 }
 
-/* CHAT WINDOW: uses chat_bg.jpg (transparent bubbles will show it) */
+
 .chat-window {
   flex: 1;
   padding: 18px;
@@ -133,7 +133,7 @@ body {
   position: relative;
 }
 
-/* INPUTS */
+
 .input-area, .pdf-area { display: flex; gap: 8px; margin-top: 8px; align-items:center; }
 #user-input {
   flex: 1;
@@ -152,10 +152,10 @@ body {
 }
 #send-btn:hover, #upload-btn:hover, .file-btn:hover { background: #e5383b; }
 
-/* Hide default file input but keep label as visible button */
+
 #pdf-upload { display: none; }
 
-/* CHAT BUBBLES */
+
 .message {
   display: inline-block;
   margin: 8px;
@@ -168,7 +168,7 @@ body {
 }
 .message:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,0.14); }
 
-/* User on right — semi-transparent red so background shows */
+
 .user-message {
   background: rgba(255, 77, 109, 0.85);
   color: #fff;
@@ -177,7 +177,7 @@ body {
   text-align: right;
 }
 
-/* Bot on left — semi-transparent maroon/purple */
+
 .bot-message {
   background: rgba(181, 23, 158, 0.85);
   color: #fff;
@@ -188,3 +188,4 @@ body {
 
 /* Utility */
 .hidden { display: none; }
+
