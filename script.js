@@ -1,20 +1,17 @@
-// script.js
-// Full client logic: Home <> Map <> Chat + sessions + PDF upload + map demo (Leaflet)
-
 document.addEventListener("DOMContentLoaded", () => {
-  // UI elements (may be present/hidden)
+  // UI elements 
   const homeEl = document.getElementById("home");
   const mapPageEl = document.getElementById("map-page");
   const chatAppEl = document.getElementById("chat-app");
 
-  // Buttons that may exist (some pages have different button names)
+  // Buttons that may exist 
   const startBtn = document.getElementById("start-btn");
   const mapBtn = document.getElementById("map-btn");
   const chatBtn = document.getElementById("chat-btn");
   const backHome1 = document.getElementById("back-home-1");
   const backHome2 = document.getElementById("back-home-2");
 
-  // Chat elements (exist inside chat-app, even if hidden)
+  // Chat elements 
   const chatWindow = document.getElementById("chat-window");
   const sessionList = document.getElementById("chat-sessions");
   const sendBtn = document.getElementById("send-btn");
@@ -62,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (backHome1) backHome1.addEventListener("click", showHome);
   if (backHome2) backHome2.addEventListener("click", showHome);
 
-  // -------- Chat functions --------
+  //Chat functions
   function addMessage(text, className) {
     if (!chatWindow) return;
     const messageDiv = document.createElement("div");
@@ -90,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function saveSession() {
     if (currentSession.length > 0) {
-      chatSessions.unshift([...currentSession]); // newest first
+      chatSessions.unshift([...currentSession]);
       if (chatSessions.length > 5) chatSessions.pop();
       renderSessions();
     }
@@ -188,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
     pdfInput.value = "";
   }
 
-  // -------- Attach chat event listeners --------
+  // Attach chat event listeners
   if (sendBtn) sendBtn.addEventListener("click", sendMessage);
   if (userInput) userInput.addEventListener("keypress", (e) => {
     if (e.key === "Enter") sendMessage();
@@ -196,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (uploadBtn) uploadBtn.addEventListener("click", handlePDF);
   if (newChatBtn) newChatBtn.addEventListener("click", startNewChat);
 
-  // -------- Map demo (Leaflet) --------
+  // Map demo
   async function initMap() {
     if (mapInitialized) {
       if (map) setTimeout(() => map.invalidateSize && map.invalidateSize(), 200);
@@ -255,3 +252,4 @@ document.addEventListener("DOMContentLoaded", () => {
     initMap();
   }
 });
+
