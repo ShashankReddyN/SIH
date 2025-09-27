@@ -10,7 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
-# ---------- GPT-2 CONFIG ----------
+# GPT-2 CONFIG
 MODEL_DIR = os.environ.get("MODEL_DIR", "./gpt2-groundwater")
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -24,7 +24,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ---------- GPT-2 ----------
+# GPT-2
 class GenRequest(BaseModel):
     question: str
 
@@ -59,7 +59,7 @@ async def gpt2_generate(question: str, context: str):
     text = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return text.split("### Assistant:")[-1].strip()
 
-# ---------- JSON DATA ----------
+# JSON DATA
 GROUNDWATER_JSON = "data/groundwater.json"
 
 def search_json(question: str):
@@ -88,7 +88,7 @@ def search_json(question: str):
             )
     return "\n".join(matches[:5])
 
-# ---------- PDF STORAGE ----------
+# PDF STORAGE
 PDF_STORE = "pdf_texts"
 PDF_INDEX = os.path.join(PDF_STORE, "index.json")
 os.makedirs(PDF_STORE, exist_ok=True)
@@ -139,18 +139,19 @@ def search_pdfs(question: str):
             results.append(f"From {meta['filename']}: {snippet}")
     return "\n".join(results[:3])
 
-# ---------- MAIN CHAT ----------
+# MAIN CHAT
 @app.post("/chat")
 async def chat(req: GenRequest):
     question = req.question.strip()
     if not question:
         raise HTTPException(status_code=400, detail="Empty question")
 
-    # 1. Retrieve from JSON + PDFs
+  
     context_json = search_json(question)
     context_pdf = search_pdfs(question)
     context = (context_json + "\n" + context_pdf).strip() or "No relevant context found."
 
-    # 2. Generate with GPT-2
+   
     answer = await gpt2_generate(question, context)
     return {"reply": answer, "context_used": context}
+
